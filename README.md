@@ -2,19 +2,7 @@
 
 ## Your Task
 
-Your assignment this week is emblematic of the fact that most modern websites are driven by two things: data and user demands. This shouldn't come as a surprise, as the ability to personalize user data is the cornerstone of real-world web development today. And as user demands evolve, applications need to be more performant.
-
-This week, you’ll take starter code with a fully functioning Google Books API search engine built with a RESTful API, and refactor it to be a GraphQL API built with Apollo Server. The app was built using the MERN stack with a React front end, MongoDB database, and Node.js/Express.js server and API. It's already set up to allow users to save book searches to the back end.
-
-To complete the assignment, you’ll need to do the following:
-
-1. Set up an Apollo Server to use GraphQL queries and mutations to fetch and modify data, replacing the existing RESTful API.
-
-2. Modify the existing authentication middleware so that it works in the context of a GraphQL API.
-
-3. Create an Apollo Provider so that requests can communicate with an Apollo Server.
-
-4. Deploy your application to Heroku with a MongoDB database using MongoDB Atlas. Use the [Deploy with Heroku and MongoDB Atlas](https://coding-boot-camp.github.io/full-stack/mongodb/deploy-with-heroku-and-mongodb-atlas) walkthrough for instructions.
+This is a MERN focused application that allows users to personalize their book data. It contains starter code with a fully functioning Google Books API search engine built with a RESTful API, and refactor it to be a GraphQL API built with Apollo Server. The app was built using the MERN stack with a React front end, MongoDB database, and Node.js/Express.js server and API. It's already set up to allow users to save book searches to the back end.
 
 ## User Story
 
@@ -74,29 +62,33 @@ A user can view their saved books on a separate page, as shown in the following 
 
 ![The Viewing Lernantino's Books page shows the books that the user Lernaninto has saved.](./Assets/21-mern-homework-demo-03.gif)
 
-## Getting Started
+### Usage
 
-In order for this application to use a GraphQL API, you’ll need to refactor the API to use GraphQL on the back end and add some functionality to the front end. The following sections contain details about the files you’ll need to modify on the back end and the front end.
+To get the application up and running, you will need to use vite, install the required technologies and run the commands below as follows.
 
-**Important**: Make sure to study the application before building upon it. Better yet, start by making a copy of it. It's already a working application&mdash;you're converting it from RESTful API practices to a GraphQL API.
+1. npm install (concurrently, apollo/client, apollo server, mongoose, react, express, jwt, bcrypt, eslint)
+
+2. npm start (test server and confirm set up in the backend)
+
+3. npm run dev 
+
+Please also see the link for the launched application below.
+
+[link]()
 
 ### Back-End Specifications
 
-You’ll need to complete the following tasks in each of these back-end files:
+* `auth.js`: Updates the auth middleware function to work with the GraphQL API.
 
-* `auth.js`: Update the auth middleware function to work with the GraphQL API.
-
-* `server.js`: Implement the Apollo Server and apply it to the Express server as middleware.
+* `server.js`: Implements the Apollo Server and apply it to the Express server as middleware.
 
 * `Schemas` directory:
 
-  * `index.js`: Export your typeDefs and resolvers.
+  * `index.js`: Export the typeDefs and resolvers.
 
-  * `resolvers.js`: Define the query and mutation functionality to work with the Mongoose models.
+  * `resolvers.js`: Defines the query and mutation functionality to work with the Mongoose models.
 
-  **Hint**: Use the functionality in the `user-controller.js` as a guide.
-
-  * `typeDefs.js`: Define the necessary `Query` and `Mutation` types:
+  * `typeDefs.js`: Defines the necessary `Query` and `Mutation` types:
 
     * `Query` type:
 
@@ -146,8 +138,6 @@ You’ll need to complete the following tasks in each of these back-end files:
 
 ### Front-End Specifications
 
-You'll need to create the following front-end files:
-
 * `queries.js`: This will hold the query `GET_ME`, which will execute the `me` query set up using Apollo Server.
 
 * `mutations.js`:
@@ -160,24 +150,44 @@ You'll need to create the following front-end files:
 
   * `REMOVE_BOOK` will execute the `removeBook` mutation.
 
-Additionally, you’ll need to complete the following tasks in each of these front-end files:
-
-* `App.jsx`: Create an Apollo Provider to make every request work with the Apollo Server.
+* `App.jsx`: Contains the Apollo Provider to make every request work with the Apollo Server.
  
 * `SearchBooks.jsx`:
 
-  * Use the Apollo `useMutation()` Hook to execute the `SAVE_BOOK` mutation in the `handleSaveBook()` function instead of the `saveBook()` function imported from the `API` file.
-
-  * Make sure you keep the logic for saving the book's ID to state in the `try...catch` block!
+  * Utilizes the Apollo `useMutation()` Hook to execute the `SAVE_BOOK` mutation in the `handleSaveBook()` function instead of the `saveBook()` function imported from the `API` file.
 
 * `SavedBooks.jsx`:
 
-  * Remove the `useEffect()` Hook that sets the state for `UserData`.
+  * Uses the `useMutation()` Hook to execute the `REMOVE_BOOK` mutation in the `handleDeleteBook()` function instead of the `deleteBook()` function that's imported from `API` file.
 
-  * Instead, use the `useQuery()` Hook to execute the `GET_ME` query on load and save it to a variable named `userData`.
+* `SignupForm.jsx`: Utilized state, react, and the relevant mutation to handle new users. 
 
-  * Use the `useMutation()` Hook to execute the `REMOVE_BOOK` mutation in the `handleDeleteBook()` function instead of the `deleteBook()` function that's imported from `API` file. (Make sure you keep the `removeBookId()` function in place!)
+* `LoginForm.jsx`: Utilized state, react, and the relevant mutation to facilitate login.
 
-* `SignupForm.jsx`: Replace the `addUser()` functionality imported from the `API` file with the `ADD_USER` mutation functionality.
+### Credits
 
-* `LoginForm.jsx`: Replace the `loginUser()` functionality imported from the `API` file with the `LOGIN_USER` mutation functionality.
+I sought help from instructor and TA to resolve issues with token retrieval and the jsx files, as well as a calendy tutor to resolve issues with the server/token.
+
+### License
+
+MIT License
+
+Copyright (c) 2024 aubreymlj96
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
